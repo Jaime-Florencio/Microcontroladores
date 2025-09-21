@@ -6,7 +6,7 @@ Ela é o "coração" do processamento: a parte que realmente **calcula, compara 
 
 📌 *Na figura abaixo (Figura 1), vemos a ULA destacada dentro de uma arquitetura simplificada de microprocessador, interligada ao acumulador, registradores e unidade de controle.*  
 
-![Figura 1 – ULA dentro da arquitetura de um microprocessador](../Imagens/ULA.png)
+![Figura 1 – ULA dentro da arquitetura de um microprocessador](Imagens/ULA.png)
 
 ---
 
