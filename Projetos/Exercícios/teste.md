@@ -625,3 +625,115 @@ Clock 2: [ AUX ] --(AuxOut=1)--> [ ULA OR ] --(OrOut=1)--> [ Barramento ] --(Acc
 ### FAQ
 - **Modifica ACC?** Sim, resultado da operação lógica substitui o valor anterior.
 - **Flags são afetados?** Sim, principalmente o Zero Flag se o resultado for 0.
+
+
+---
+## LDI R1,0
+
+### Descrição
+Carrega o valor imediato 0 no registrador R1.
+
+### Microciclos
+- **Clock 1:** Unidade de Imediatos coloca 0 no barramento (ExtDataOut=1).
+- **Clock 2:** R1 captura o valor (R1in=1).
+
+### Fluxo Visual
+```
+Clock 1: [ Imediato=0 ] --(ExtDataOut=1)--> [ Barramento ]
+Clock 2: [ Barramento ] --(R1in=1)--> [ R1 := 0 ]
+```
+
+---
+## LDI R2,0
+
+### Descrição
+Carrega o valor imediato 0 no registrador R2.
+
+### Microciclos
+- **Clock 1:** Unidade de Imediatos coloca 0 no barramento (ExtDataOut=1).
+- **Clock 2:** R2 captura o valor (R2in=1).
+
+### Fluxo Visual
+```
+Clock 1: [ Imediato=0 ] --(ExtDataOut=1)--> [ Barramento ]
+Clock 2: [ Barramento ] --(R2in=1)--> [ R2 := 0 ]
+```
+
+---
+## LDI R3,0
+
+### Descrição
+Carrega o valor imediato 0 no registrador R3.
+
+### Microciclos
+- **Clock 1:** Unidade de Imediatos coloca 0 no barramento (ExtDataOut=1).
+- **Clock 2:** R3 captura o valor (R3in=1).
+
+### Fluxo Visual
+```
+Clock 1: [ Imediato=0 ] --(ExtDataOut=1)--> [ Barramento ]
+Clock 2: [ Barramento ] --(R3in=1)--> [ R3 := 0 ]
+```
+
+---
+## LDI ACC,0
+
+### Descrição
+Carrega o valor imediato 0 no acumulador (ACC).
+
+### Microciclos
+- **Clock 1:** Unidade de Imediatos coloca 0 no barramento (ExtDataOut=1).
+- **Clock 2:** ACC captura o valor (AccIn=1).
+
+### Fluxo Visual
+```
+Clock 1: [ Imediato=0 ] --(ExtDataOut=1)--> [ Barramento ]
+Clock 2: [ Barramento ] --(AccIn=1)--> [ ACC := 0 ]
+```
+
+---
+## LDI AUX,0
+
+### Descrição
+Carrega o valor imediato 0 no registrador auxiliar (AUX).
+
+### Microciclos
+- **Clock 1:** Unidade de Imediatos coloca 0 no barramento (ExtDataOut=1).
+- **Clock 2:** AUX captura o valor (AuxIn=1).
+
+### Fluxo Visual
+```
+Clock 1: [ Imediato=0 ] --(ExtDataOut=1)--> [ Barramento ]
+Clock 2: [ Barramento ] --(AuxIn=1)--> [ AUX := 0 ]
+```
+
+---
+## NOP
+
+### Descrição
+Instrução "No Operation". Não altera nenhum registrador ou barramento.
+
+### Microciclos
+- **Clock 1 e 2:** Nenhum sinal é ativado, barramento permanece em repouso.
+
+### Observação
+- Usada para alinhamento de instruções, temporizações ou espera de hardware.
+
+---
+## LOOP (Pseudo-instrução)
+
+### Descrição
+Marca um ponto do programa para repetição.
+
+### Implementação
+- Geralmente acompanhado de uma instrução de salto (ex.: `JMP LOOP`).
+- Não é uma instrução física, mas uma **label** para controle de fluxo.
+
+### Exemplo
+```
+LOOP:
+    NOP
+    NOP
+    JMP LOOP
+```
+
