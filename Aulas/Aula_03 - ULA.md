@@ -1,193 +1,127 @@
-# 1. Introdução à ULA (Unidade Lógica e Aritmética)
+# 🖥️ Arquitetura Interna do Microprocessador  
 
-## 1.1 O que é a ULA?
-A Unidade Lógica e Aritmética (ULA) é o bloco responsável por executar **operações matemáticas e lógicas** dentro do microprocessador.  
-Ela é o "coração" do processamento: a parte que realmente **calcula, compara e manipula dados**.
+A figura abaixo mostra os principais blocos internos de um microprocessador e como eles se comunicam para executar instruções.  
+Cada parte tem sua função específica, mas todas precisam **trabalhar em conjunto** para que o processador funcione.  
 
-📌 *Na figura abaixo (Figura 1), vemos a ULA destacada dentro de uma arquitetura simplificada de microprocessador, interligada ao acumulador, registradores e unidade de controle.*  
+# 🖥️ Arquitetura Interna do Microprocessador  
 
-![Figura 1 – ULA dentro da arquitetura de um microprocessador](Imagens/ULA.png)
+![Arquitetura Interna](Imagens/ULA.png)  
+*Figura: Esquema simplificado da arquitetura interna de um microprocessador.*
 
----
-
-## 1.2 Origem e Importância
-Antes da ULA, computadores eram apenas conjuntos de circuitos de comutação.  
-Com a introdução das **portas lógicas**, surgiram os primeiros cálculos digitais.  
-A ULA surge como uma **integração sistemática dessas operações**, permitindo que qualquer instrução de alto nível (como em Assembly ou C) seja traduzida em operações simples realizadas pelo hardware.
-
-### 1.2.1 Evolução Histórica
-- **Década de 1940-50**: Circuitos de válvulas, UNIVAC e ENIAC.  
-- **1971**: Intel 4004 – primeiro microprocessador comercial, já com ULA integrada.  
-- **Atualmente**: ULAs modernas realizam bilhões de operações por segundo, com suporte a operações de inteiros, ponto flutuante e vetoriais.
+A figura acima mostra os principais blocos internos de um microprocessador e como eles se comunicam para executar instruções.  
+Cada parte tem sua função específica, mas todas precisam **trabalhar em conjunto** para que o processador funcione.  
 
 ---
 
-## 1.3 Funções Básicas da ULA
-A ULA pode executar:
-- **Operações aritméticas**: soma, subtração, incremento, decremento.  
-- **Operações lógicas**: AND, OR, XOR, NOT.  
-- **Deslocamentos e rotações**: manipulação de bits para ajustes rápidos.  
+## 🔹 Componentes e Funções
+
+### 1. **Acumulador (ACUM.)**
+- **O que é:** Registrador especial onde os resultados das operações são guardados.  
+- **Analogia:** Uma **mesa de trabalho** onde os ingredientes (dados) ficam enquanto o cozinheiro prepara a comida.  
+- **Exemplo:** Se a instrução for `5 + 3`, o acumulador guarda primeiro o `5`, depois o `3`, e finalmente o resultado `8`.
 
 ---
 
-## 1.4 Papel dentro do Processador
-A ULA não trabalha sozinha:  
-- Recebe dados dos **registradores** e do **acumulador**.  
-- Executa a operação determinada pela **unidade de controle**.  
-- Retorna o resultado para um registrador ou memória.  
-- Atualiza **flags** (Zero, Carry, Negativo) que influenciam decisões futuras.
+### 2. **Registrador Temporário (TEMP)**
+- **O que é:** Um espaço extra usado durante os cálculos.  
+- **Analogia:** Um **pratinho de apoio** na cozinha, onde você deixa algo separado para usar logo em seguida.  
+- **Exemplo:** Para calcular `(7 + 2) – 4`, o TEMP guarda o `7 + 2 = 9` antes de subtrair o `4`.
 
 ---
 
-## 1.5 Analogia Didática
-Podemos imaginar a ULA como a **“calculadora interna”** da CPU:  
-- Os **registradores** funcionam como a memória da calculadora (onde você digita os números).  
-- A **unidade de controle** é a pessoa que decide qual operação apertar (somar, subtrair, comparar).  
-- A **ULA** é o botão da calculadora que executa a conta.  
+### 3. **ULA (Unidade Lógica e Aritmética)**
+- **O que é:** O “cérebro matemático” do processador, responsável por fazer contas e comparações.  
+- **Analogia:** Um **cozinheiro** que realmente mistura os ingredientes.  
+- **Exemplo:** Se a instrução é `ADD A, B`, a ULA pega os valores e devolve a soma.
 
 ---
 
-# 2. Contexto na Arquitetura da ULA
-
-A ULA não trabalha isolada. Ela está conectada a diversos blocos da arquitetura interna do microprocessador, como o **acumulador**, os **registradores de propósito geral**, a **unidade de controle** e a **unidade de deslocamento**.  
-Esses elementos, em conjunto, permitem que o processador execute instruções de forma organizada e eficiente.
-
-📌 *Na Figura 1, já vista na introdução, é possível observar a ULA no centro da arquitetura, ligada ao acumulador, registradores e unidade de deslocamento.*  
+### 4. **Unidade de Deslocamento**
+- **O que é:** Faz o deslocamento de bits para a esquerda ou direita.  
+- **Analogia:** Como **empurrar um prato para o lado da mesa**, reorganizando o espaço.  
+- **Exemplo:** Deslocar `0101` (5) para a esquerda vira `1010` (10). É como multiplicar por 2.
 
 ---
 
-## 2.1 Flags (Sinalizadores)
-Os **flags** são pequenos flip-flops usados como sinalizadores do estado do resultado produzido pela ULA.  
-Após cada operação, a ULA atualiza automaticamente esses bits, permitindo que a **unidade de controle** tome decisões.
-
-### Exemplos comuns:
-- **Z (Zero)** → indica que o resultado da operação foi zero.  
-- **C (Carry)** → indica um transporte (vai-um) em somas ou um empréstimo em subtrações.  
-- **N (Negativo)** → indica se o resultado foi negativo (bit mais significativo = 1).  
-- **O ou V (Overflow)** → indica se houve estouro aritmético.
-
-📌 **Exemplo prático:**  
-Num microcontrolador de 8 bits, ao calcular `200 + 100 = 300`:  
-- O valor real (300) não cabe em 8 bits (máximo 255).  
-- O resultado armazenado será **44** (300 - 256).  
-- O **flag Carry** será ativado, indicando que houve um estouro de capacidade.
+### 5. **DEMUX (Demultiplexador)**
+- **O que é:** Decide para onde a informação deve ir.  
+- **Analogia:** Um **porteiro** que abre a porta certa para cada funcionário.  
+- **Exemplo:** Depois de uma conta, o DEMUX decide se o resultado vai para o **acumulador** ou para a **memória**.
 
 ---
 
-## 2.2 Registrador de Deslocamento
-Um **registrador de deslocamento (shift register)** é formado por flip-flops ligados em série e usados para **mover os bits** de um número para a esquerda ou para a direita.
-
-### Funções principais:
-1. **Multiplicação/Divisão por 2**  
-   - Deslocar para a esquerda = multiplicar por 2.  
-   - Deslocar para a direita = dividir por 2.  
-
-2. **Rotação de bits**  
-   - Muito usado em algoritmos de criptografia e compressão.  
-
-3. **Comunicação serial**  
-   - Protocolos como SPI e UART enviam/recebem dados bit a bit usando registradores de deslocamento.
-
-📌 **Exemplo prático em C:**
-```c
-#include <stdint.h>
-
-uint8_t valor = 5;   // 00000101 em binário
-
-uint8_t a = valor << 1;  // Resultado: 00001010 (10 em decimal)
-uint8_t b = valor >> 1;  // Resultado: 00000010 (2 em decimal)
-
-## 2.3 Registradores de Propósito Geral
-São como **caixinhas rápidas de memória** dentro da CPU.  
-Eles guardam valores temporários que a ULA vai usar nas operações.  
-
-📌 *Exemplo prático:* se você vai somar 5 + 3, esses números ficam guardados primeiro em registradores antes de ir para a ULA.
+### 6. **Registradores A, B, C, D**
+- **O que são:** Pequenos espaços de armazenamento rápido.  
+- **Analogia:** **Gavetas de ingredientes** na cozinha.  
+- **Exemplo:** Você pode deixar o número `10` no REG. A e o número `20` no REG. B, para depois usar na ULA.
 
 ---
 
-## 2.4 Acumulador
-É um **registrador especial**, usado quase sempre como ponto principal de cálculo.  
-A ULA costuma colocar os resultados nele.  
-
-📌 *Exemplo prático:* pense no acumulador como a **tela da calculadora**, que sempre mostra o resultado mais recente.
-
----
-
-## 2.5 ULA (Unidade Lógica e Aritmética)
-É a **calculadora interna do processador**.  
-Faz contas (soma, subtração) e também operações lógicas (AND, OR, NOT, XOR).  
-
-📌 *Exemplo prático:* quando você escreve em C `c = a + b;`, é a ULA que faz a soma de `a` e `b`.
+### 7. **PC (Program Counter)**
+- **O que é:** Guarda o endereço da **próxima instrução** a ser executada.  
+- **Analogia:** Um **marcador de página** no livro de receitas.  
+- **Exemplo:** Se a CPU acabou de rodar a linha 10 do código, o PC já aponta para a linha 11.
 
 ---
 
-## 2.6 PC (Program Counter)
-É o **contador de programa**.  
-Guarda o endereço da próxima instrução que o processador deve executar.  
-
-📌 *Exemplo prático:* pense no PC como o **marcador de páginas de um livro**: ele sempre mostra onde o processador deve ler a próxima linha.
-
----
-
-## 2.7 Pilha (Stack)
-É uma área de memória organizada como uma **pilha de pratos**: o último que entra é o primeiro que sai (LIFO).  
-Serve para guardar dados temporários e endereços de retorno de funções.  
-
-📌 *Exemplo prático:* quando uma função é chamada, o endereço para continuar o programa depois dela é guardado na pilha.
+### 8. **SP (Stack Pointer)**
+- **O que é:** Controla a pilha de memória (Stack).  
+- **Analogia:** Uma **pilha de pratos**: sempre pega ou coloca no topo.  
+- **Exemplo:** Ao chamar uma função, o SP guarda o endereço para depois retornar ao ponto correto.
 
 ---
 
-## 2.8 SP (Stack Pointer)
-É o **dedo indicador da pilha**.  
-Aponta para o topo da pilha, mostrando onde será colocado ou retirado o próximo dado.  
-
-📌 *Exemplo prático:* se a pilha tem 5 pratos, o SP aponta para o quinto. Ao empilhar mais um, o SP passa a apontar para o sexto.
-
----
-
-## 2.9 Registrador de Instrução (IR)
-Guarda a **instrução que está sendo executada** no momento.  
-Trabalha junto com o PC e a unidade de controle.  
-
-📌 *Exemplo prático:* se o programa manda somar dois números, essa instrução fica no IR até ser concluída.
+### 9. **Unidade de Decodificação e Controle**
+- **O que é:** Lê as instruções e gera sinais de controle para coordenar tudo.  
+- **Analogia:** O **chefe da cozinha** que lê os pedidos e manda ordens.  
+- **Exemplo:** Se a instrução for `ADD A, B`, o chefe manda:  
+  - “ULA, pegue valores de A e B!”  
+  - “Acumulador, guarde o resultado!”  
 
 ---
 
-## 2.10 Unidade de Decodificação e Controle
-É o **maestro da CPU**.  
-Lê a instrução no IR e gera sinais de controle para coordenar a ULA, registradores, memória etc.  
-
-📌 *Exemplo prático:* se a instrução for `ADD A, B`, essa unidade manda a ULA somar os valores e guardar no acumulador.
-
----
-
-## 2.11 Registradores de Configuração do Sistema
-Registradores especiais que permitem **ajustar o funcionamento do processador** e dos periféricos.  
-Com eles você pode ativar timers, configurar portas de entrada/saída, definir modos de interrupção etc.  
-
-📌 *Exemplo prático:* em microcontroladores, você usa esses registradores para escolher se um pino será entrada ou saída digital.
+### 10. **Barramento de Dados**
+- **O que é:** Caminho por onde os dados circulam.  
+- **Analogia:** Um **corredor da cozinha** por onde os garçons levam ingredientes e pratos prontos.  
+- **Exemplo:** Quando o resultado `8` é guardado na memória, ele viaja pelo barramento de dados.
 
 ---
 
-# 3. Representação de 8 bits (1 byte)
-Um microcontrolador de 8 bits consegue manipular diretamente valores de até **8 dígitos binários**.  
-Isso equivale a números entre **0 e 255** em decimal, ou de **-128 a +127** se usar representação com sinal.
-
-| Binário (8 bits) | Decimal | Hexadecimal | ASCII (Caractere) |
-|------------------|---------|-------------|-------------------|
-| 01000001         | 65      | 0x41        | A                 |
-| 01000010         | 66      | 0x42        | B                 |
-| 00110000         | 48      | 0x30        | 0 (zero)          |
-| 00110001         | 49      | 0x31        | 1                 |
-| 00110010         | 50      | 0x32        | 2                 |
-| 01111111         | 127     | 0x7F        | DEL (controle)    |
-| 11111111         | 255     | 0xFF        | (sem caractere ASCII padrão) |
+### 11. **Barramento de Endereços**
+- **O que é:** Caminho que indica **onde** estão os dados na memória.  
+- **Analogia:** O **mapa da cozinha**, dizendo em qual prateleira buscar o ingrediente.  
+- **Exemplo:** O processador pede: “vá até a gaveta 105 e traga o valor de lá”.
 
 ---
 
-📌 **Observações importantes:**
-- O mesmo conjunto de bits pode ser interpretado como **número** ou como **letra**, dependendo do uso.  
-- `01000001` pode ser o número **65** (decimal) ou a letra **A** (na tabela ASCII).  
-- `11111111` (255) é o **máximo valor sem sinal** que um processador de 8 bits manipula diretamente.  
-- Se usar com sinal (complemento de 2), esse mesmo `11111111` representaria o valor **-1**.
+### 12. **Sinais de Controle**
+- **O que são:** Regras que dizem quando ler, escrever ou parar.  
+- **Analogia:** **Semáforos no corredor da cozinha**, para evitar colisões.  
+- **Exemplo:** Um sinal indica “LEITURA” → pega dados da memória. Outro indica “ESCRITA” → manda dados para a memória.
 
+---
+
+## 🔄 Exemplo Completo de Funcionamento
+
+Vamos simular uma instrução simples: **`C = A + B`**
+
+1. **PC** (marcador de página) aponta para a linha da instrução `ADD A, B`.  
+2. A **Unidade de Controle** lê a instrução e diz:  
+   - “Busquem os valores nos registradores A e B.”  
+3. Os valores são levados até a **ULA** pelo **Barramento de Dados**.  
+4. A **ULA** soma os dois valores.  
+5. O resultado passa pela **Unidade de Deslocamento** (caso precise ser ajustado).  
+6. O **DEMUX** decide que o resultado deve ser guardado no **REG. C**.  
+7. O **Acumulador** também pode armazenar o resultado temporariamente.  
+8. O **PC** é atualizado para a próxima instrução.  
+9. Tudo isso é coordenado pelos **Sinais de Controle**, que garantem que cada etapa ocorra no tempo certo.
+
+---
+
+## 🌍 Resumindo
+- O microprocessador funciona como uma **cozinha organizada**, onde cada funcionário (registrador, ULA, acumulador, etc.) tem seu papel.  
+- Todos dependem do **chefe (Unidade de Controle)** para saber o que fazer.  
+- O **PC** garante que a receita (programa) seja seguida na ordem correta.  
+- Os **barramentos** são os corredores e mapas que conectam tudo.  
+
+👉 No fim, todos trabalham juntos para transformar **instruções escritas em linguagem de máquina** em **resultados concretos**.
