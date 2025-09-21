@@ -3,8 +3,6 @@
 A figura abaixo mostra os principais blocos internos de um microprocessador e como eles se comunicam para executar instruções.  
 Cada parte tem sua função específica, mas todas precisam **trabalhar em conjunto** para que o processador funcione.  
 
-# 🖥️ Arquitetura Interna do Microprocessador  
-
 ![Arquitetura Interna](Imagens/ULA.png)  
 *Figura: Esquema simplificado da arquitetura interna de um microprocessador.*
 
