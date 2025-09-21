@@ -544,3 +544,84 @@ Não.
 - [ ] No Clock 2, **liguei** `AddOut` (resultado da ULA) e `AccIn` (destino).  
 - [ ] ACC mudou para **ACC + AUX** ao final do Clock 2.
 
+
+
+---
+## MOV AUX,R2
+
+### Descrição
+Transfere o conteúdo de R2 para o registrador auxiliar (AUX).
+
+### Microciclos
+- **Clock 1:** R2 coloca o valor no barramento (R2out=1).
+- **Clock 2:** AUX captura o valor do barramento (AuxIn=1).
+
+### Fluxo Visual
+```
+Clock 1: [ R2 ] --(R2out=1)--> [ Barramento ]
+Clock 2: [ Barramento ] --(AuxIn=1)--> [ AUX := R2 ]
+```
+
+### FAQ
+- **R2 é alterado?** Não, apenas lê o valor e envia para o barramento.
+- **AUX sobrescreve valor anterior?** Sim, o conteúdo antigo é perdido.
+
+---
+## SUB ACC,AUX
+
+### Descrição
+Subtrai o valor de AUX do ACC: ACC := ACC - AUX.
+
+### Microciclos
+- **Clock 1:** ACC libera seu valor para a ULA (AccOut=1).
+- **Clock 2:** AUX libera seu valor (AuxOut=1), ULA configurada para SUB gera resultado e ACC recebe (AccIn=1).
+
+### Fluxo Visual
+```
+Clock 1: [ ACC ] --(AccOut=1)--> [ ULA SUB ]
+Clock 2: [ AUX ] --(AuxOut=1)--> [ ULA SUB ] --(SubOut=1)--> [ Barramento ] --(AccIn=1)--> [ ACC := ACC - AUX ]
+```
+
+### FAQ
+- **Flags são atualizados?** Sim, Carry/Borrow e Zero são ajustados.
+- **Pode causar underflow?** Sim, se AUX > ACC, resultado será negativo (em complemento de dois).
+
+---
+## MOV AUX,R3
+
+### Descrição
+Transfere o conteúdo de R3 para o registrador auxiliar (AUX).
+
+### Microciclos
+- **Clock 1:** R3 coloca valor no barramento (R3out=1).
+- **Clock 2:** AUX captura valor (AuxIn=1).
+
+### Fluxo Visual
+```
+Clock 1: [ R3 ] --(R3out=1)--> [ Barramento ]
+Clock 2: [ Barramento ] --(AuxIn=1)--> [ AUX := R3 ]
+```
+
+### FAQ
+- **Perco o valor anterior de AUX?** Sim, é sobrescrito.
+- **R3 é alterado?** Não, apenas lido.
+
+---
+## OR ACC,AUX
+
+### Descrição
+Realiza operação lógica OR entre ACC e AUX: ACC := ACC OR AUX.
+
+### Microciclos
+- **Clock 1:** ACC envia valor à ULA (AccOut=1).
+- **Clock 2:** AUX envia valor (AuxOut=1), ULA configurada em OR gera resultado e ACC recebe (AccIn=1).
+
+### Fluxo Visual
+```
+Clock 1: [ ACC ] --(AccOut=1)--> [ ULA OR ]
+Clock 2: [ AUX ] --(AuxOut=1)--> [ ULA OR ] --(OrOut=1)--> [ Barramento ] --(AccIn=1)--> [ ACC := ACC OR AUX ]
+```
+
+### FAQ
+- **Modifica ACC?** Sim, resultado da operação lógica substitui o valor anterior.
+- **Flags são afetados?** Sim, principalmente o Zero Flag se o resultado for 0.
