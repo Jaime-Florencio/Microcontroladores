@@ -1,5 +1,6 @@
-ficar de adicionar
 # 📘 Conceitos Gerais de Microcontroladores
+
+Nesta aula, você conhecerá os conceitos fundamentais de microcontroladores, entendendo o papel desses dispositivos em sistemas embarcados e como eles se diferenciam de outras soluções computacionais.
 
 ## 🔹 1. O que é um Microcontrolador?
 - Circuito integrado (chip) que reúne:
