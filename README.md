@@ -31,8 +31,7 @@ Cada projeto fica em uma pasta própria, com seu material de apoio, anotações 
 
 Projetos atualmente disponíveis:
 
-- **1. Central de Alarme/** → Anotações introdutórias e visão geral do projeto de central de alarme.
-- **Central de Alarme/** → Documentação detalhada da montagem, firmware e testes da central de alarme.
+- **1.Central _de_Alarme/** → Anotações introdutórias, montagem, firmware e testes da central de alarme.
 - **Exercicios/** → Exercícios guiados e recursos visuais para reforçar os conceitos estudados.
 
 🔗 [Ver os projetos](./Projetos)

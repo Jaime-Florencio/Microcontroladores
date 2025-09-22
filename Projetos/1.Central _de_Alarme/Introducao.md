@@ -51,7 +51,7 @@ Conforme referência do professor e cálculos iniciais:
 ---
 
 ## 📂 Organização da Documentação
-O projeto será dividido em partes, cada uma em seu próprio arquivo `.md` dentro da pasta `Projetos/Central_de_Alarme/`:
+O projeto será dividido em partes, cada uma em seu próprio arquivo `.md` dentro da pasta `Projetos/1.Central _de_Alarme/`:
 
 1. **Introdução** (este arquivo)  
 2. **Parte 01 – Base do Projeto** (alimentação, reset, clock, pinagem inicial)  
