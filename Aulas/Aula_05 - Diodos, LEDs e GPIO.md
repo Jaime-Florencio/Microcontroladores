@@ -19,14 +19,15 @@ No símbolo esquemático:
 - **Corrente típica:** 10–20 mA (usar resistor para limitar).  
 
 **Cálculo do resistor limitador (Lei de Ohm):**  
-\[
-R = \frac{V_{fonte} - V_{LED}}{I_{LED}}
-\]  
 
-Exemplo: LED vermelho em 5 V, corrente 15 mA:  
-\[
-R = \frac{5 - 2}{0,015} \approx 200 \,\Omega \quad (\text{usar 220 Ω})
-\]
+R = (Vfonte - Vled) / Iled
+
+Exemplo:  
+Vfonte = 5 V  
+Vled = 2 V  
+Iled = 15 mA  
+
+R = (5 - 2) / 0,015 = 200 Ω (usar 220 Ω comercial)
 
 - Em **paralelo**, cada LED deve ter **seu próprio resistor**.  
 - Em **série**, a corrente é a mesma, mas as tensões se somam.  
