@@ -65,16 +65,14 @@ Por isso, **entrada é mais segura** (não fornece nem drena corrente).
   - A partir disso, conduz ao contrário **sem queimar**.  
 - Vantagem: pode ser usado para **regular tensão** ou **proteger entradas**.  
 
-### Exemplo de proteção no Arduino (5 V)  
+## 🔹 Exemplo de proteção no Arduino (5 V)
 
+```text
 Sinal ----[R]----+----> Pino Arduino
                  |
               [Zener 5,1V]
                  |
                 GND
-
-- Se sinal ≤ 5 V → Zener não conduz, pino recebe normal.
-- Se sinal > 5,1 V → Zener conduz em reverso, desviando excesso para GND → protege o microcontrolador.
 
 ---
 
