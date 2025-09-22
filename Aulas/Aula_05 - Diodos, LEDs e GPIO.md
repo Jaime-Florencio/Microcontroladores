@@ -75,6 +75,7 @@ Sinal ----[R]----+----> Pino Arduino
                 GND
 
 ---
+```
 
 ## 🔹 Palavras-chave aprendidas
 - **Tensão de junção (Vf):** queda fixa no LED/diodo em condução direta.  
