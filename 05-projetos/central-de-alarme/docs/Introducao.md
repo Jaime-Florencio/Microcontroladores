@@ -21,7 +21,7 @@ A Central de Alarme será composta por:
 
 ---
 
-[📑 Ver Especificação](../../06-assets/imagens/especificacaoprojeto.png)
+[📑 Ver Especificação](../../../../06-assets/imagens/especificacaoprojeto.png)
 
 ## 📐 Especificações Técnicas (resumo)
 Conforme referência do professor e cálculos iniciais:
