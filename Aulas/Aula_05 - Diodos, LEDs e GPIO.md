@@ -4,7 +4,13 @@
 - É um **diodo que emite luz**.  
 - Tem **polaridade**:  
   - **Ânodo (+)** → perna maior.  
-  - **Cátodo (–)** → perna menor/faixinha no encapsulamento.  
+  - **Cátodo (–)** → perna menor/faixinha no encapsulamento. 
+## 🔹 Símbolo e Identificação do Diodo
+No símbolo esquemático:
+- A seta (►) aponta do ânodo para o cátodo.  
+- A barra representa o cátodo.
+
+![Exemplo de diodo](../Imagens/exemplodiodo.png)
 - **Tensão de junção (Vf):** queda fixa típica para acender:  
   - Vermelho: ~2,0 V  
   - Verde: ~2,2 V  
