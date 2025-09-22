@@ -10,7 +10,8 @@ No símbolo esquemático:
 - A seta (►) aponta do ânodo para o cátodo.  
 - A barra representa o cátodo.
 
-![Exemplo de diodo](.../Imagens/exemplodiodo.png)
+![Exemplo de diodo](Imagens/exemplodiodo.png)
+
 - **Tensão de junção (Vf):** queda fixa típica para acender:  
   - Vermelho: ~2,0 V  
   - Verde: ~2,2 V  
