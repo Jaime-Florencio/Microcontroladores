@@ -73,10 +73,8 @@ Sinal ----[R]----+----> Pino Arduino
               [Zener 5,1V]
                  |
                 GND
-
----
 ```
-
+---
 ## 🔹 Palavras-chave aprendidas
 - **Tensão de junção (Vf):** queda fixa no LED/diodo em condução direta.  
 - **Fornecer corrente (source):** pino conecta ao Vcc.  
