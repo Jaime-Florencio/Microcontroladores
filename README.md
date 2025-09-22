@@ -1,19 +1,14 @@
 # ⚡ Estudos de Microcontroladores
 
-Repositório dedicado ao **estudo de microcontroladores** e desenvolvimento de projetos práticos.  
-Aqui estão organizados meus **resumos de aulas**, **projetos práticos** e **bibliotecas personalizadas**, com foco em Arduino Mega 2560, ESP32 e outros MCUs.
+Repositório dedicado ao **estudo de microcontroladores** e desenvolvimento de projetos práticos.
+Aqui estão organizados meus **resumos de aulas** e **projetos práticos**, com foco em Arduino Mega 2560, ESP32 e outros MCUs.
 
 ---
 
 ## 📂 Estrutura do Repositório
 
 - **Aulas/** → Anotações de cada aula em formato `.md`, numeradas e comentadas.
-- **Projetos/** → Projetos práticos separados por microcontrolador.
-  - **Arduino_Mega2560/**
-  - **ESP32/**
-  - **PIC/**
-- **Docs/** → PDFs, resumos teóricos, fluxogramas, imagens e esquemas de apoio.
-- **Libs/** → Bibliotecas desenvolvidas para reutilização em diferentes projetos.
+- **Projetos/** → Projetos práticos documentados, com roteiros e exercícios.
 - **README.md** → Este documento de visão geral.
 
 ---
@@ -32,18 +27,13 @@ Aqui estão organizados meus **resumos de aulas**, **projetos práticos** e **bi
 
 ## 🚀 Projetos
 
-Cada projeto fica em uma pasta própria, com seu **código-fonte, bibliotecas e README explicativo**.
+Cada projeto fica em uma pasta própria, com seu material de apoio, anotações técnicas e arquivos complementares.
 
-Exemplos:
-- **Arduino Mega 2560**
-  - Projeto_PiscaLED
-  - Projeto_Microondas
-  - Projeto_SensorTemperatura
-- **ESP32**
-  - Projeto_ECG
-  - Projeto_Bluetooth
-- **PIC**
-  - Projeto_LCD
+Projetos atualmente disponíveis:
+
+- **1. Central de Alarme/** → Anotações introdutórias e visão geral do projeto de central de alarme.
+- **Central de Alarme/** → Documentação detalhada da montagem, firmware e testes da central de alarme.
+- **Exercicios/** → Exercícios guiados e recursos visuais para reforçar os conceitos estudados.
 
 🔗 [Ver os projetos](./Projetos)
 
@@ -51,9 +41,8 @@ Exemplos:
 
 ## 🔧 Ferramentas utilizadas
 
-- [PlatformIO](https://platformio.org/) + VS Code  
-- Linguagem **C/C++** com manipulação de registradores  
-- `avr/io.h` e bibliotecas próprias (`lib_shield.h`, `lib_AD.h`, etc.)  
+- [PlatformIO](https://platformio.org/) + VS Code
+- Linguagem **C/C++** com manipulação de registradores
 
 ---
 
