@@ -26,81 +26,29 @@ A Central de Alarme será composta por:
 ## 📐 Especificações Técnicas (resumo)
 Conforme referência do professor e cálculos iniciais:
 
-# 📐 Cálculos de Componentes – Central de Alarme
+- **LEDs**:  
+  - Vf ≈ 1.2 V, If ≈ 11 mA  
+  - Resistor calculado: **330 Ω**
 
-## LEDs
-- **Dados típicos**:  
-  - Tensão direta (Vf) ≈ 1.2 V  
-  - Corrente desejada (If) ≈ 11 mA  
+- **Display de 7 segmentos**:  
+  - Vf ≈ 1.3 V por segmento, If ≈ 9 mA  
+  - Resistor calculado: **430 Ω**
 
-- **Cálculo do resistor**:  
-  \[
-  R = \frac{V_{fonte} - V_f}{I_f}
-  \]  
-  Supondo fonte de 5 V:  
-  \[
-  R = \frac{5 - 1.2}{0.011} \approx 345 \, \Omega
-  \]  
-- **Valor escolhido**: **330 Ω** (valor comercial próximo).
+- **Teclado matricial**:  
+  - Corrente alvo ≈ 200 µA  
+  - Diodos: 1N4148 (0.7 V)  
+  - Resistores: **22 kΩ**
 
----
+- **Sensores**:  
+  - Corrente alvo ≈ 200 µA  
+  - Resistores: **24 kΩ**  
+  - Entradas **independentes** (não em série)
 
-## Display de 7 Segmentos
-- **Dados típicos (catodo comum)**:  
-  - Tensão por segmento (Vf) ≈ 1.3 V  
-  - Corrente desejada (If) ≈ 9 mA  
+- **LCD1602**:  
+  - Trimpot de 4.7 kΩ para ajuste de contraste  
 
-- **Cálculo do resistor**:  
-  \[
-  R = \frac{5 - 1.3}{0.009} \approx 411 \, \Omega
-  \]  
-- **Valor escolhido**: **430 Ω** (mais próximo da série E12, protege o PIC).
-
----
-
-## Teclado Matricial
-- **Objetivo**: limitar corrente de varredura.  
-- Corrente alvo: ≈ 200 µA  
-- Diodo 1N4148: queda ≈ 0.7 V  
-- Resistores:  
-  \[
-  R = \frac{5 - 0.7}{200 \times 10^{-6}} \approx 21.5 \, k\Omega
-  \]  
-- **Valor escolhido**: **22 kΩ**.
-
----
-
-## Sensores (Entradas Digitais)
-- **Objetivo**: correntes de pull ≈ 200 µA  
-- Cálculo:  
-  \[
-  R = \frac{5}{200 \times 10^{-6}} \approx 25 \, k\Omega
-  \]  
-- **Valor escolhido**: **24 kΩ** (independentes, **não em série**).
-
----
-
-## LCD 1602
-- **Contraste**:  
-  - Ajustado com trimpot de **4.7 kΩ** ligado ao pino V0.  
-  - Permite regulagem do brilho do fundo dos caracteres.
-
----
-
-## Oscilador
-- **Clock principal**: cristal de **8 MHz**  
-- Capacitores de carga: **27 pF** (um em cada terminal para GND).
-
----
-
-## Reset
-- **Power-on Reset (MCLR)**:  
-  - Resistor pull-up: **10 kΩ**  
-  - Capacitor para terra: **1 µF**  
-  - Forma um atraso RC para garantir reset na energização.
-
----
-
+- **Oscilador**: cristal 8 MHz + capacitores 27 pF  
+- **Reset**: resistor 10 kΩ + capacitor 1 µF (power-on reset)  
 
 ---
 
