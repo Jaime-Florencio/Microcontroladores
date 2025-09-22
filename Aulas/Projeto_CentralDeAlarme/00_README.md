@@ -20,9 +20,8 @@ Este repositório contém o passo a passo para construir uma **Central de Alarme
 
 ## Como abrir no EasyEDA
 1. File → New → Schematic.
-2. Defina Grid = 5 ou 10 mil (o que preferir) e Snap ligado.
-3. Busque na **Libraries**: “PIC18F4550”, “LCD1602”, “1N4148”, “LED”, “CRYSTAL 8MHz”, “RES 1/4W”.
-4. Salve o projeto e commite prints dos esquemas na pasta `Aulas/Imagens/`.
+2. Busque na **Libraries**: “PIC18F4550”, “LCD1602”, “1N4148”, “LED”, “CRYSTAL 8MHz”, “RES 1/4W”.
+3. Salve o projeto e commite prints dos esquemas na pasta `Aulas/Imagens/`.
 
 Boa prática: **inicie todos os pinos como ENTRADA** no firmware; só configure como SAÍDA quando o hardware do ramo (resistor, LED etc.) estiver correto — protege o microcontrolador.
 
