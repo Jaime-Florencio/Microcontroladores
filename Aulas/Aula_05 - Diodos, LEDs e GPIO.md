@@ -68,12 +68,13 @@ Por isso, **entrada é mais segura** (não fornece nem drena corrente).
 ### Exemplo de proteção no Arduino (5 V)  
 
 Sinal ----[R]----+----> Pino Arduino
-|
-[Zener 5,1V]
-|
-GND
-- Se sinal ≤ 5 V → Zener não conduz, pino recebe normal.  
-- Se sinal > 5,1 V → Zener conduz em reverso, desviando excesso para GND → **protege o microcontrolador**.  
+                 |
+              [Zener 5,1V]
+                 |
+                GND
+
+- Se sinal ≤ 5 V → Zener não conduz, pino recebe normal.
+- Se sinal > 5,1 V → Zener conduz em reverso, desviando excesso para GND → protege o microcontrolador.
 
 ---
 
