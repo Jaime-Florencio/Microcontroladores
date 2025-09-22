@@ -13,6 +13,18 @@ O PIC não funciona só porque está no esquemático: ele precisa receber energi
 
 ---
 
+### 💭 Dúvidas Frequentes – Alimentação
+**Por que usar capacitor cerâmico de 100 nF em cada par Vdd–Vss?**  
+Porque ele atua como um reservatório instantâneo contra ruídos rápidos da fonte. O valor de 100 nF é padrão na indústria para filtrar frequências altas.
+
+**Por que adicionar um capacitor maior (10 µF ou mais)?**  
+Esse segura variações mais lentas na tensão, funcionando como uma “mini bateria”.
+
+**Posso usar um diodo de proteção?**  
+Sim, um diodo zener pode ser usado entre +5 V e GND para proteger contra sobretensão.
+
+---
+
 ## 2. Reset (MCLR – Master Clear Reset)
 
 O pino **MCLR (pino 1)** serve para reiniciar o PIC.
@@ -29,6 +41,24 @@ Por isso usamos:
 
 ---
 
+### 💭 Dúvidas Frequentes – Reset
+**O MCLR reseta tudo?**  
+Sim, ele reinicia o programa desde o início, como um botão reset do PC.
+
+**O que significa pino “flutuando”?**  
+É quando não está ligado a nada fixo, podendo oscilar sozinho e causar resets falsos.
+
+**Por que usar resistor de 10 kΩ no MCLR?**  
+Ele mantém o pino estável em 5 V (HIGH). Não é para limitar corrente, e sim para dar estabilidade.
+
+**E o capacitor de 1 µF?**  
+Ele cria um pequeno atraso no reset quando a fonte liga, garantindo que a tensão estabilize antes do PIC começar.
+
+**Qual a função do botão no MCLR?**  
+Ao apertar, liga o pino ao GND, forçando o reset manual. Ao soltar, o resistor puxa de volta para 5 V.
+
+---
+
 ## 3. Clock (Oscilador)
 
 O PIC precisa de um **“coração” batendo**, que é o **oscilador**.
@@ -41,12 +71,25 @@ O PIC precisa de um **“coração” batendo**, que é o **oscilador**.
 
 ---
 
+### 💭 Dúvidas Frequentes – Clock
+**Por que dois pinos para clock?**  
+Porque o cristal tem dois terminais: OSC1 (entrada) e OSC2 (saída do oscilador interno).
+
+**Qual frequência usar?**  
+Você escolhe, mas deve estar dentro dos limites do datasheet. Para USB precisa de 48 MHz (via PLL).
+
+---
+
 ## 4. USB (opcional)
 
 - **Pino VBUS (20)** só deve ser ligado ao **+5 V** se você for usar USB.  
 - Caso contrário, **deixe desligado**.  
 
 ---
+
+### 💭 Dúvidas Frequentes – USB
+**Para que serve o pino VBUS?**  
+Ele detecta se a tensão de 5 V do cabo USB está presente. Não alimenta o PIC, mas informa ao firmware.
 
 ## ✅ Conclusão
 
