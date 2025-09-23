@@ -1,5 +1,5 @@
 # 📘 Aula – Resistores Pull-Up e Pull-Down  
-![Esquema Pull-Up e Pull-Down](../06-assets/imagens/PullUp&PullDown.png)
+![Esquema Pull-Up e Pull-Down](../06-assets/imagens/PullUp&pullDown.png)
 ## 🔹 Introdução  
 Resistores de **Pull-Up** e **Pull-Down** servem para **garantir um estado lógico definido** (0 ou 1) em pinos de entrada digital.  
 Sem eles, o pino pode ficar em estado **flutuante**, captando ruídos e mudando de valor sozinho.  
