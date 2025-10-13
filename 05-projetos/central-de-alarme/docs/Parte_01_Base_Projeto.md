@@ -23,7 +23,7 @@ Deixar algum par desligado pode causar **ruídos, travamentos ou resets aleatór
 
 ### ⚡ Capacitores de desacoplamento
 
-![Capacitor de desacoplamento](../../06-assets/imagens/3PROJETO1.png)
+![Capacitor de desacoplamento](../../../06-assets/imagens/3PROJETO1.png)
 
 - Um **capacitor cerâmico de 100 nF** deve ser colocado **entre cada par VDD–VSS**, bem próximo ao chip.  
 - Um **capacitor eletrolítico de 100 µF** próximo à entrada da fonte ajuda a filtrar oscilações maiores.
@@ -39,7 +39,7 @@ Deixar algum par desligado pode causar **ruídos, travamentos ou resets aleatór
 
 ## 🔁 2. Reset (MCLR – Master Clear Reset)
 
-![Circuito de Reset](../../06-assets/imagens/1PROJETO1.png)
+![Circuito de Reset](../../../06-assets/imagens/1PROJETO1.png)
 
 O pino **MCLR (pino 1)** reinicia o PIC.  
 Ele precisa ficar **em nível alto (5 V)** para o microcontrolador funcionar normalmente.
@@ -74,7 +74,7 @@ Ao apertar, liga o pino ao GND, forçando o reset manual. Ao soltar, o resistor 
 
 ## ⏱️ 3. Clock (Oscilador Externo)
 
-![Clock](../../06-assets/imagens/2PROJETO1.png)
+![Clock](../../../06-assets/imagens/2PROJETO1.png)
 
 O PIC precisa de um “coração” — o **oscilador** — para gerar o ritmo das instruções.
 
