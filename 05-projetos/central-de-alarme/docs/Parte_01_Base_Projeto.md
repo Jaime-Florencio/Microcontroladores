@@ -1,49 +1,62 @@
 # 🚀 Parte 01 – Circuito Mínimo do PIC18F4550
 
-## 1. Alimentação (Power Supply)
-
-O PIC não funciona só porque está no esquemático: ele precisa receber energia estável.
-
-- **Pinos Vdd (11 e 32)** → ligam no **+5 V**  
-- **Pinos Vss (12 e 31)** → ligam no **GND**  
-- Cada par **Vdd–Vss** precisa de um **capacitor cerâmico de 100 nF** bem próximo (isso “filtra” ruído da fonte).  
-- Um capacitor maior (**10 µF ou mais**) perto da entrada da fonte ajuda contra variações maiores.  
-
-👉 Sem esses capacitores, o PIC pode **resetar sozinho** ou se comportar de forma estranha.
+> Esta etapa define o circuito essencial para o PIC funcionar de forma estável: alimentação, reset, clock e desacoplamento.
 
 ---
 
-### 💭 Dúvidas Frequentes – Alimentação
-**Por que usar capacitor cerâmico de 100 nF em cada par Vdd–Vss?**  
-Porque ele atua como um reservatório instantâneo contra ruídos rápidos da fonte. O valor de 100 nF é padrão na indústria para filtrar frequências altas.
+## 🧩 1. Alimentação (Power Supply)
 
-**Por que adicionar um capacitor maior (10 µF ou mais)?**  
-Esse segura variações mais lentas na tensão, funcionando como uma “mini bateria”.
+![Alimentação](../../06-assets/imagens/0PROJETO1.png)
 
-**Posso usar um diodo de proteção?**  
-Sim, um diodo zener pode ser usado entre +5 V e GND para proteger contra sobretensão.
+O PIC18F4550 possui **dois pares de alimentação**:
+
+| Tipo | Pinos | Conexão |
+|------|--------|----------|
+| VDD | 11 e 32 | +5 V |
+| VSS | 12 e 31 | GND |
+
+✅ **Todos devem ser ligados!**  
+Eles alimentam diferentes blocos internos (núcleo, periféricos e módulo USB).  
+Deixar algum par desligado pode causar **ruídos, travamentos ou resets aleatórios**.
 
 ---
 
-## 2. Reset (MCLR – Master Clear Reset)
+### ⚡ Capacitores de desacoplamento
 
-O pino **MCLR (pino 1)** serve para reiniciar o PIC.
+![Capacitor de desacoplamento](../../06-assets/imagens/3PROJETO1.png)
 
-- Ele precisa ficar sempre em **nível alto (5 V)** para o PIC rodar o programa.  
-- Se ficar “flutuando”, o PIC trava.  
+- Um **capacitor cerâmico de 100 nF** deve ser colocado **entre cada par VDD–VSS**, bem próximo ao chip.  
+- Um **capacitor eletrolítico de 100 µF** próximo à entrada da fonte ajuda a filtrar oscilações maiores.
 
-Por isso usamos:  
-- **Resistor de 10 kΩ** ligando MCLR ao +5 V (pull-up).  
-- **Capacitor de 1 µF** ligando MCLR ao GND → cria um atraso quando liga a fonte.  
-- **Opcional:** botão entre MCLR e GND para reset manual.  
+💬 *Função:* atuam como “mini baterias” locais — seguram variações rápidas e estabilizam o 5 V.
 
-👉 Isso garante que, ao ligar a fonte, o PIC **espera alguns milissegundos** antes de começar a rodar o programa, dando tempo para a tensão estabilizar.
+| Tipo | Valor | Frequência que filtra | Posição ideal |
+|------|--------|------------------------|----------------|
+| Cerâmico | 100 nF | Ruídos rápidos (alta frequência) | Colado nos pinos do PIC |
+| Eletrolítico | 100 µF | Oscilações lentas (baixa frequência) | Perto da entrada da placa |
+
+---
+
+## 🔁 2. Reset (MCLR – Master Clear Reset)
+
+![Circuito de Reset](../../06-assets/imagens/1PROJETO1.png)
+
+O pino **MCLR (pino 1)** reinicia o PIC.  
+Ele precisa ficar **em nível alto (5 V)** para o microcontrolador funcionar normalmente.
+
+**Circuito recomendado:**
+- **Resistor de 10 kΩ** entre MCLR e +5 V (mantém o pino alto).  
+- **Capacitor de 1 µF** entre MCLR e GND (gera atraso na partida).  
+- **Botão entre MCLR e GND** (reset manual).
+
+💬 *Função do capacitor:* ao ligar o circuito, ele segura o MCLR em nível baixo por alguns milissegundos, garantindo que o PIC só comece a rodar quando a tensão estiver estável.
 
 ---
 
 ### 💭 Dúvidas Frequentes – Reset
+
 **O MCLR reseta tudo?**  
-Sim, ele reinicia o programa desde o início, como um botão reset do PC.
+Sim. Ele reinicia o programa desde o início, como o botão reset de um computador.
 
 **O que significa pino “flutuando”?**  
 É quando não está ligado a nada fixo, podendo oscilar sozinho e causar resets falsos.
@@ -52,53 +65,77 @@ Sim, ele reinicia o programa desde o início, como um botão reset do PC.
 Ele mantém o pino estável em 5 V (HIGH). Não é para limitar corrente, e sim para dar estabilidade.
 
 **E o capacitor de 1 µF?**  
-Ele cria um pequeno atraso no reset quando a fonte liga, garantindo que a tensão estabilize antes do PIC começar.
+Cria um pequeno atraso no reset quando a fonte liga, garantindo que a tensão estabilize antes do PIC começar.
 
 **Qual a função do botão no MCLR?**  
 Ao apertar, liga o pino ao GND, forçando o reset manual. Ao soltar, o resistor puxa de volta para 5 V.
 
 ---
 
-## 3. Clock (Oscilador)
+## ⏱️ 3. Clock (Oscilador Externo)
 
-O PIC precisa de um **“coração” batendo**, que é o **oscilador**.
+![Clock](../../06-assets/imagens/2PROJETO1.png)
 
-- **Pinos OSC1 (13) e OSC2 (14)** → ligamos um **cristal de 8 MHz**.  
-- Cada perna do cristal vai a GND através de **27 pF**.  
-- Esse clock externo pode ser multiplicado pelo **PLL interno do PIC** → chegando a **48 MHz** se necessário (por exemplo, para USB).  
+O PIC precisa de um “coração” — o **oscilador** — para gerar o ritmo das instruções.
 
-👉 Se não colocar cristal, você pode usar o **oscilador interno** (configurado no firmware), mas em projetos sérios geralmente se usa cristal pela **precisão**.
+**Conexões:**
+- **OSC1 (pino 13)** e **OSC2 (pino 14)** → conectam ao **cristal de 8 MHz**.  
+- Cada perna do cristal vai para o **GND** através de **27 pF**.  
 
----
-
-### 💭 Dúvidas Frequentes – Clock
-**Por que dois pinos para clock?**  
-Porque o cristal tem dois terminais: OSC1 (entrada) e OSC2 (saída do oscilador interno).
-
-**Qual frequência usar?**  
-Você escolhe, mas deve estar dentro dos limites do datasheet. Para USB precisa de 48 MHz (via PLL).
+💬 *Como funciona:*  
+OSC1 e OSC2 são as “mãos” que fazem o cristal vibrar continuamente.  
+Os capacitores funcionam como “amortecedores”, equilibrando e filtrando o sinal de vibração.
 
 ---
 
-## 4. USB (opcional)
+### 🔧 Configuração no firmware
 
-- **Pino VBUS (20)** só deve ser ligado ao **+5 V** se você for usar USB.  
-- Caso contrário, **deixe desligado**.  
+Se for usar o cristal de 8 MHz com PLL interno (para USB):
+
+```c
+#pragma config FOSC = HSPLL_HS
+#pragma config PLLDIV = 2
+#pragma config CPUDIV = OSC1_PLL2
+#pragma config USBDIV = 2
+```
+
+Esses bits fazem o PIC multiplicar os 8 MHz do cristal até **48 MHz**, necessário para o USB full-speed.
 
 ---
 
-### 💭 Dúvidas Frequentes – USB
-**Para que serve o pino VBUS?**  
-Ele detecta se a tensão de 5 V do cabo USB está presente. Não alimenta o PIC, mas informa ao firmware.
+## 💻 4. USB (opcional)
+
+O pino **VBUS (20)** só deve ser ligado ao **+5 V** se você for usar USB.  
+Caso contrário, **deixe desligado**.
+
+**Para que serve o VBUS?**  
+Ele detecta se o cabo USB está conectado (tensão de 5 V presente).  
+Não alimenta o PIC — apenas informa ao firmware que há conexão USB.
+
+---
+
+## 🧠 5. Dúvidas Frequentes
+
+**Posso ligar só um par de VDD/VSS?**  
+Não! Os dois pares alimentam blocos diferentes do chip.
+
+**Por que o PIC precisa de capacitores na alimentação?**  
+Eles estabilizam a tensão — sem eles, o chip pode reiniciar sozinho.
+
+**O que acontece se eu esquecer o capacitor de 1 µF do reset?**  
+O PIC pode começar a rodar antes da tensão estabilizar, gerando falhas logo ao ligar.
+
+**O que faz o cristal de 8 MHz?**  
+Ele define o ritmo (clock) do micro. Sem ele, o PIC pode até usar o oscilador interno, mas com menos precisão.
+
+---
 
 ## ✅ Conclusão
 
-Se você ligar apenas:
-- **Vdd e Vss** corretamente,  
-- Colocar **capacitores de desacoplamento**,  
-- **Reset** com resistor + capacitor,  
-- **Cristal** com capacitores de carga,  
+Se você montar **exatamente este circuito mínimo**, o PIC já:
 
-➡️ O PIC já **liga, reseta e gera clock**.  
-Ele estará pronto para rodar qualquer firmware que você gravar.
+- Liga com estabilidade  
+- Gera clock preciso  
+- Permite reset manual e automático  
 
+➡️ A partir daqui, é só adicionar os periféricos do projeto (LCD, LEDs, teclado etc.).
