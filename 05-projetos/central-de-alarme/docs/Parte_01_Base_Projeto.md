@@ -6,7 +6,7 @@
 
 ## 🧩 1. Alimentação (Power Supply)
 
-![Alimentação](../../06-assets/imagens/0PROJETO1.png)
+![Alimentação](../../../06-assets/imagens/0PROJETO1.png)
 
 O PIC18F4550 possui **dois pares de alimentação**:
 
